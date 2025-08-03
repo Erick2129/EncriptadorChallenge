@@ -103,6 +103,27 @@ if (texto.length != 0){
 }
 const botonCopiar = document.getElementById("botonCopiar");
 botonCopiar.addEventListener("click", copiar = () => {
-var contenido = document.getElementById("texto__resultado").textContent;
-navigator.clipboard.writeText(contenido);
-})
+    var contenido = document.getElementById("texto__resultado").textContent;
+    navigator.clipboard.writeText(contenido);
+    
+    // Mostrar mensaje flotante
+    const mensaje = document.getElementById("mensaje-copiado");
+    mensaje.classList.add("mostrar");
+    
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+        mensaje.classList.remove("mostrar");
+    }, 3000);
+});
+
+function resetear() {
+    document.getElementById("texto").value = "";
+    document.getElementById("texto__resultado").textContent = "";
+    document.getElementById("texto__resultado").style.display = "none";
+    document.getElementById("muñeco").style.display = "block";
+    document.getElementById("muñeco").src = "./Imagenes/Muñeco.png";
+    document.getElementById("titulo__mensaje_encriptado").textContent = "Ningún mensaje fue encontrado";
+    document.getElementById("parrafo").textContent = "Ingresa el texto que desees encriptar o desencriptar.";
+    document.getElementById("botonCopiar").style.display = "none";
+}
+

@@ -293,3 +293,72 @@
         visibility: hidden;
     }
 }
+
+.inicio {
+    position: absolute;
+    top: 20px;
+    right: 140px;
+    width: 15%;  /* Más pequeño que los otros botones */
+    padding: 10px;
+    background-color: #EFF1FA;
+    border: 1px solid #0A3871;
+    border-radius: 16px;
+    color: #0A3871;
+    font-family: "Inter";
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    z-index: 10;  /* Para que esté sobre otros elementos */
+}
+
+.inicio:hover {
+    background-color: #D8DFE8;
+    transform: scale(1.05);
+}
+
+/* Ajuste para móviles */
+@media (max-width: 57.5em) {
+    .inicio {
+        width: 25%;
+        top: 10px;
+        right: 10px;
+    }
+}
+
+/* mensaje emergente al copiar */
+
+.mensaje-copiado {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0A3871;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-family: "Inter";
+    font-size: 14px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.mensaje-copiado.mostrar {
+    opacity: 1;
+}
+3. JavaScript (modifica la función copiar() en scripts.js):
+javascript
+const botonCopiar = document.getElementById("botonCopiar");
+botonCopiar.addEventListener("click", copiar = () => {
+    var contenido = document.getElementById("texto__resultado").textContent;
+    navigator.clipboard.writeText(contenido);
+    
+    // Mostrar mensaje flotante
+    const mensaje = document.getElementById("mensaje-copiado");
+    mensaje.classList.add("mostrar");
+    
+    // Ocultar después de 3 segundos
+    setTimeout(() => {
+        mensaje.classList.remove("mostrar");
+    }, 3000);
+});
